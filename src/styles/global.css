@@ -66,11 +66,20 @@
   --mint-ink: #0B7A60;
   --mint-ink-strong: #0A6B54;
   --violet-ink: #6D28D9;
+  --amber-ink: #B45309;
   --muted-strong: #52627A;
   --surface-raised: #FFFFFF;
   --surface-sunken: #F1F5F9;
   --border-strong: #CBD5E1;
   --ring: #0B7A60;
+
+  /*
+   * Superficie destacada. Sustituye a los gradientes mint/azul que se
+   * repetían por componente y pesaban distinto en cada tema.
+   */
+  --stage-bg: #FFFFFF;
+  --stage-glow: color-mix(in srgb, var(--primary-mint) 10%, transparent);
+  --card-edge-alpha: 0;
   --nav-h: 68px;
   --shadow-float: 0 18px 40px -18px rgba(15, 23, 42, 0.28),
     0 2px 8px rgba(15, 23, 42, 0.06);
@@ -85,10 +94,10 @@
   --primary-turquoise: #00D2B4;
   --primary-mint-dark: #0F474A;
   --bg-main: #0F172A;
-  --bg-card: #1A1C21;
+  --bg-card: #16203A;
   --text-primary: #E2E8F0;
   --text-secondary: #94A3B8;
-  --border-color: #2D3748;
+  --border-color: #2A3550;
   --secondary-purple: #7C53ED;
   --secondary-purple-dark: #532E9D;
   --secondary-blue: #A5C7FF;
@@ -101,11 +110,15 @@
   --mint-ink: #4CE1AC;
   --mint-ink-strong: #7BF0C7;
   --violet-ink: #B49BFF;
+  --amber-ink: #FBBF24;
   --muted-strong: #B6C2D4;
-  --surface-raised: #1A1C21;
+  --surface-raised: #16203A;
   --surface-sunken: #0B1220;
-  --border-strong: #3A465C;
+  --border-strong: #3B4A68;
   --ring: #4CE1AC;
+  --stage-bg: #121C31;
+  --stage-glow: color-mix(in srgb, var(--primary-mint) 12%, transparent);
+  --card-edge-alpha: 0.06;
   --shadow-float: 0 18px 40px -18px rgba(0, 0, 0, 0.65),
     0 2px 8px rgba(0, 0, 0, 0.35);
 }
@@ -131,6 +144,7 @@
   --color-mint-ink: var(--mint-ink);
   --color-mint-ink-strong: var(--mint-ink-strong);
   --color-violet-ink: var(--violet-ink);
+  --color-amber-ink: var(--amber-ink);
   --color-muted-strong: var(--muted-strong);
   --color-surface-raised: var(--surface-raised);
   --color-surface-sunken: var(--surface-sunken);
@@ -197,6 +211,66 @@ body {
     .mk-shell {
       padding-inline: 2rem;
     }
+  }
+
+  /* Ritmo vertical único para toda la landing. */
+  .mk-section {
+    padding-block: 5rem;
+  }
+
+  @media (min-width: 640px) {
+    .mk-section {
+      padding-block: 6rem;
+    }
+  }
+
+  /*
+   * Hairline de escaparate. Es el divisor de capítulo de la página:
+   * 1px que se desvanece en los extremos, nunca un bloque de fondo.
+   */
+  .mk-shelf {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, var(--border-color) 70%, transparent) 18%,
+      color-mix(in srgb, var(--mint-ink) 30%, transparent) 50%,
+      color-mix(in srgb, var(--border-color) 70%, transparent) 82%,
+      transparent
+    );
+  }
+
+  /* Superficie de tarjeta: elevación por tono, borde y filo superior. */
+  .mk-card {
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    background-color: var(--surface-raised);
+    box-shadow:
+      var(--shadow-card),
+      inset 0 1px 0 rgb(255 255 255 / var(--card-edge-alpha));
+  }
+
+  /* Panel destacado: superficie iluminada, no un gradiente recortado. */
+  .mk-stage {
+    border: 1px solid var(--border-color);
+    border-radius: 1.25rem;
+    background:
+      radial-gradient(120% 140% at 15% 0%, var(--stage-glow), transparent 62%),
+      var(--stage-bg);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / var(--card-edge-alpha));
+  }
+
+  /* Contenedor de icono. El trazo va en tinta legible, nunca en mint puro. */
+  .mk-icon-tile {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.75rem;
+    width: 2.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    background-color: color-mix(in srgb, var(--mint-ink) 9%, var(--surface-raised));
+    color: var(--mint-ink);
   }
 
   .mk-skip {
