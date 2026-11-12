@@ -1,5 +1,5 @@
 ---
-import { SIGNUP_URL } from '../../config/site';
+import { SIGNUP_URL, STORE_DOMAIN_SUFFIX } from '../../config/site';
 ---
 <!-- Final CTA -->
 <section aria-labelledby="cta-title" class="mk-section">
@@ -12,7 +12,7 @@ import { SIGNUP_URL } from '../../config/site';
 				¿Listo para lanzar tu tienda?
 			</h2>
 			<p class="mx-auto mt-4 max-w-lg text-lg leading-relaxed text-text-secondary">
-				Únete a más de 500 negocios que ya venden con Makced
+				Crea tu tienda en minutos y empieza a vender sin comisiones
 			</p>
 
 			<div class="mx-auto mt-8 max-w-xl">
@@ -32,7 +32,7 @@ import { SIGNUP_URL } from '../../config/site';
 						class="min-w-0 flex-1 bg-transparent px-3 py-2.5 text-text-primary placeholder:text-text-secondary focus:outline-none"
 					/>
 					<span class="hidden shrink-0 font-mono text-sm text-text-secondary sm:block" aria-hidden="true">
-						.makced.com
+						{STORE_DOMAIN_SUFFIX}
 					</span>
 					<a href={SIGNUP_URL} class="mk-btn mk-btn-primary w-full sm:w-auto">Empezar Gratis</a>
 				</div>
