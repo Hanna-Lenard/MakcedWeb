@@ -1,18 +1,18 @@
 /**
  * Enlaces y constantes compartidas de la landing.
  *
- * TODO(registro): todavía no existe una URL pública de registro.
- * Se conserva el valor que ya usaba la landing para no introducir
- * placeholders nuevos. Cuando el registro esté desplegado, sustituir
- * SIGNUP_URL por la URL pública definitiva y migrar las secciones
- * pendientes (Pricing, FinalCTA, Footer) a esta constante.
+ * Dominio de producción: https://www.makced.online
+ * La URL absoluta del sitio se define en astro.config.mjs (`site`), que es la
+ * fuente de verdad para canonical, Open Graph y, más adelante, el sitemap.
  *
- * Ruta real implementada hoy, solo en el entorno local del monorepo Makced:
+ * TODO(registro): el alta de usuarios todavía no tiene URL pública. Será un
+ * subdominio de makced.online, pero aún no está decidido, así que SIGNUP_URL
+ * es un placeholder. Sustituirlo por el subdominio real (por ejemplo
+ * https://app.makced.online) cuando el registro esté desplegado.
+ * Referencia interna del monorepo Makced:
  *   apps/login -> http://localhost:3001/?mode=signup
- * Variables relacionadas: NEXT_PUBLIC_LOGIN_URL y NEXT_PUBLIC_DASHBOARD_URL
- * (definidas únicamente para localhost en .env.example).
  */
-export const SIGNUP_URL = 'https://tu-tienda.makced.com';
+export const SIGNUP_URL = 'https://app.makced.online';
 
 /** Sufijo gratuito que promete el Hero. */
 export const STORE_DOMAIN_SUFFIX = '.makced.online';

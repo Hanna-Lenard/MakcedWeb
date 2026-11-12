@@ -9,10 +9,17 @@ import FourPillars from '../components/sections/FourPillars.astro';
 import ConversionTech from '../components/sections/ConversionTech.astro';
 import DashboardOverview from '../components/sections/DashboardOverview.astro';
 import PaymentIsolation from '../components/sections/PaymentIsolation.astro';
-import Testimonials from '../components/sections/Testimonials.astro';
 import Pricing from '../components/sections/Pricing.astro';
 import FinalCTA from '../components/sections/FinalCTA.astro';
 import Footer from '../components/sections/Footer.astro';
+
+const site = Astro.site ?? new URL('https://www.makced.online');
+const canonicalURL = new URL(Astro.url.pathname, site);
+const ogImageURL = new URL('/og-cover.png', site);
+
+const pageTitle = 'Makced — Lanza tu tienda online sin código';
+const pageDescription =
+	'Democratiza el e-commerce. Crea tu tienda sin código, sin comisiones abusivas y con control absoluto de tu dinero.';
 ---
 
 <html lang="es">
@@ -22,8 +29,33 @@ import Footer from '../components/sections/Footer.astro';
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Makced - Lanza tu tienda online sin código</title>
-		<meta name="description" content="Democratiza el e-commerce. Crea tu tienda sin código, sin comisiones abusivas y con control absoluto de tu dinero." />
+
+		<title>{pageTitle}</title>
+		<meta name="description" content={pageDescription} />
+		<link rel="canonical" href={canonicalURL.href} />
+
+		<!-- Color de la interfaz del navegador en móvil. -->
+		<meta name="theme-color" content="#F8FAFC" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#0F172A" media="(prefers-color-scheme: dark)" />
+
+		<!-- Open Graph (WhatsApp, LinkedIn, Facebook...) -->
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Makced" />
+		<meta property="og:locale" content="es_ES" />
+		<meta property="og:title" content={pageTitle} />
+		<meta property="og:description" content={pageDescription} />
+		<meta property="og:url" content={canonicalURL.href} />
+		<meta property="og:image" content={ogImageURL.href} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="Makced — lanza tu tienda online sin código" />
+
+		<!-- Twitter / X -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={pageTitle} />
+		<meta name="twitter:description" content={pageDescription} />
+		<meta name="twitter:image" content={ogImageURL.href} />
+
 		<link rel="preload" href="/fonts/familjen-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
 		<script is:inline>
 			(() => {
@@ -51,7 +83,6 @@ import Footer from '../components/sections/Footer.astro';
 			<ConversionTech />
 			<DashboardOverview />
 			<PaymentIsolation />
-			<Testimonials />
 			<Pricing />
 			<FinalCTA />
 		</main>
