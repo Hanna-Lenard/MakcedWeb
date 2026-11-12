@@ -1,0 +1,365 @@
+@import "tailwindcss";
+
+/*
+ * El selector de tema escribe data-theme="dark" en <html>.
+ * Tailwind 4, por defecto, resuelve `dark:` con prefers-color-scheme.
+ * Esta variante hace que `dark:` responda al atributo y no al sistema.
+ */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* Tipografías autoalojadas (SIL Open Font License 1.1, ver public/fonts). */
+@font-face {
+  font-family: "Familjen Grotesk";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 700;
+  src: url("/fonts/familjen-grotesk-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
+    U+FFFD;
+}
+
+@font-face {
+  font-family: "Azeret Mono";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 600;
+  src: url("/fonts/azeret-mono-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
+    U+FFFD;
+}
+
+:root {
+  color-scheme: light;
+
+  /* Modo Claro por defecto */
+  --primary-mint: #4CE1AC;
+  --primary-turquoise: #00D2B4;
+  --primary-mint-light: #E6FAF5;
+  --secondary-blue: #A5C7FF;
+  --secondary-purple: #7C53ED;
+  --accent-star: #FBBF24;
+  --whatsapp-green: #25D366;
+  --text-primary: #0F172A;
+  --text-secondary: #64748B;
+  --bg-main: #F8FAFC;
+  --bg-card: #FFFFFF;
+  --border-color: #E2E8F0;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-card: 0 10px 30px -5px rgba(15, 23, 42, 0.05);
+  --shadow-glow-mint: 0 8px 20px rgba(76, 225, 172, 0.35);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  /*
+   * Definiciones que antes solo existían en modo oscuro.
+   * Se añaden en claro para que ningún var() quede inválido.
+   */
+  --primary-mint-dark: #D6F7EC;
+  --secondary-purple-dark: #EDE7FD;
+  --shadow-glow-purple: 0 8px 24px rgba(124, 83, 237, 0.18);
+
+  /* Tokens nuevos: no sustituyen a los existentes. */
+  --mint-ink: #0B7A60;
+  --mint-ink-strong: #0A6B54;
+  --violet-ink: #6D28D9;
+  --amber-ink: #B45309;
+  --muted-strong: #52627A;
+  --surface-raised: #FFFFFF;
+  --surface-sunken: #F1F5F9;
+  --border-strong: #CBD5E1;
+  --ring: #0B7A60;
+
+  /*
+   * Superficie destacada. Sustituye a los gradientes mint/azul que se
+   * repetían por componente y pesaban distinto en cada tema.
+   */
+  --stage-bg: #FFFFFF;
+  --stage-glow: color-mix(in srgb, var(--primary-mint) 10%, transparent);
+  --card-edge-alpha: 0;
+  --nav-h: 68px;
+  --shadow-float: 0 18px 40px -18px rgba(15, 23, 42, 0.28),
+    0 2px 8px rgba(15, 23, 42, 0.06);
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Modo Oscuro */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --primary-mint: #4CE1AC;
+  --primary-turquoise: #00D2B4;
+  --primary-mint-dark: #0F474A;
+  --bg-main: #0F172A;
+  --bg-card: #16203A;
+  --text-primary: #E2E8F0;
+  --text-secondary: #94A3B8;
+  --border-color: #2A3550;
+  --secondary-purple: #7C53ED;
+  --secondary-purple-dark: #532E9D;
+  --secondary-blue: #A5C7FF;
+  --accent-star: #FBBF24;
+  --whatsapp-green: #25D366;
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --shadow-glow-mint: 0 0 25px rgba(76, 225, 172, 0.25);
+  --shadow-glow-purple: 0 0 25px rgba(124, 83, 237, 0.30);
+
+  --mint-ink: #4CE1AC;
+  --mint-ink-strong: #7BF0C7;
+  --violet-ink: #B49BFF;
+  --amber-ink: #FBBF24;
+  --muted-strong: #B6C2D4;
+  --surface-raised: #16203A;
+  --surface-sunken: #0B1220;
+  --border-strong: #3B4A68;
+  --ring: #4CE1AC;
+  --stage-bg: #121C31;
+  --stage-glow: color-mix(in srgb, var(--primary-mint) 12%, transparent);
+  --card-edge-alpha: 0.06;
+  --shadow-float: 0 18px 40px -18px rgba(0, 0, 0, 0.65),
+    0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+@theme {
+  /* Mapear variables CSS a colores de Tailwind */
+  --color-primary-mint: var(--primary-mint);
+  --color-primary-turquoise: var(--primary-turquoise);
+  --color-primary-mint-light: var(--primary-mint-light);
+  --color-primary-mint-dark: var(--primary-mint-dark);
+  --color-secondary-blue: var(--secondary-blue);
+  --color-secondary-purple: var(--secondary-purple);
+  --color-secondary-purple-dark: var(--secondary-purple-dark);
+  --color-accent-star: var(--accent-star);
+  --color-whatsapp-green: var(--whatsapp-green);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-bg-main: var(--bg-main);
+  --color-bg-card: var(--bg-card);
+  --color-border-color: var(--border-color);
+
+  /* Tokens nuevos */
+  --color-mint-ink: var(--mint-ink);
+  --color-mint-ink-strong: var(--mint-ink-strong);
+  --color-violet-ink: var(--violet-ink);
+  --color-amber-ink: var(--amber-ink);
+  --color-muted-strong: var(--muted-strong);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-border-strong: var(--border-strong);
+
+  --font-sans: "Familjen Grotesk", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Familjen Grotesk", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Azeret Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
+
+  --shadow-sm: var(--shadow-sm);
+  --shadow-card: var(--shadow-card);
+  --shadow-glow-mint: var(--shadow-glow-mint);
+  --shadow-glow-purple: var(--shadow-glow-purple);
+  --shadow-float: var(--shadow-float);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-full: var(--radius-full);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-h) + 1rem);
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--primary-mint) 45%, transparent);
+  color: var(--text-primary);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+
+@layer components {
+  .mk-shell {
+    width: 100%;
+    max-width: 80rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .mk-shell {
+      padding-inline: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .mk-shell {
+      padding-inline: 2rem;
+    }
+  }
+
+  /* Ritmo vertical único para toda la landing. */
+  .mk-section {
+    padding-block: 5rem;
+  }
+
+  @media (min-width: 640px) {
+    .mk-section {
+      padding-block: 6rem;
+    }
+  }
+
+  /*
+   * Hairline de escaparate. Es el divisor de capítulo de la página:
+   * 1px que se desvanece en los extremos, nunca un bloque de fondo.
+   */
+  .mk-shelf {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, var(--border-color) 70%, transparent) 18%,
+      color-mix(in srgb, var(--mint-ink) 30%, transparent) 50%,
+      color-mix(in srgb, var(--border-color) 70%, transparent) 82%,
+      transparent
+    );
+  }
+
+  /* Superficie de tarjeta: elevación por tono, borde y filo superior. */
+  .mk-card {
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    background-color: var(--surface-raised);
+    box-shadow:
+      var(--shadow-card),
+      inset 0 1px 0 rgb(255 255 255 / var(--card-edge-alpha));
+  }
+
+  /* Panel destacado: superficie iluminada, no un gradiente recortado. */
+  .mk-stage {
+    border: 1px solid var(--border-color);
+    border-radius: 1.25rem;
+    background:
+      radial-gradient(120% 140% at 15% 0%, var(--stage-glow), transparent 62%),
+      var(--stage-bg);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / var(--card-edge-alpha));
+  }
+
+  /* Contenedor de icono. El trazo va en tinta legible, nunca en mint puro. */
+  .mk-icon-tile {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.75rem;
+    width: 2.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    background-color: color-mix(in srgb, var(--mint-ink) 9%, var(--surface-raised));
+    color: var(--mint-ink);
+  }
+
+  .mk-skip {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 100;
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0.65rem 1rem;
+    border-radius: 10px;
+    background-color: var(--text-primary);
+    color: var(--bg-main);
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: var(--shadow-float);
+    transform: translateY(-200%);
+    transition: transform 0.18s var(--ease-out);
+  }
+
+  .mk-skip:focus-visible {
+    transform: translateY(0);
+  }
+
+  .mk-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0.65rem 1.15rem;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1;
+    text-decoration: none;
+    transition:
+      background-color 0.18s var(--ease-out),
+      border-color 0.18s var(--ease-out),
+      color 0.18s var(--ease-out),
+      transform 0.18s var(--ease-out),
+      box-shadow 0.18s var(--ease-out);
+  }
+
+  .mk-btn:active {
+    transform: translateY(1px);
+  }
+
+  .mk-btn-primary {
+    background-color: var(--primary-mint);
+    color: #0F172A;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.35),
+      0 8px 18px -10px rgba(15, 23, 42, 0.35);
+  }
+
+  .mk-btn-primary:hover {
+    background-color: #3FD39F;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.4),
+      0 10px 22px -10px rgba(15, 23, 42, 0.4);
+  }
+
+  .mk-btn-ghost {
+    background-color: transparent;
+    color: var(--text-primary);
+    border-color: var(--border-color);
+  }
+
+  .mk-btn-ghost:hover {
+    background-color: var(--surface-sunken);
+    border-color: var(--border-strong);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

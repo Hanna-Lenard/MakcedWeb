@@ -1,0 +1,57 @@
+---
+// ⚠️ SECCIÓN DESACTIVADA: no se importa ni se renderiza en index.astro.
+// Contiene testimonios de EJEMPLO ("Más de 500 negocios" y nombres inventados).
+// Sustituir por casos reales antes de volver a activarla.
+import StarRating from '../StarRating.astro';
+---
+<!-- Testimonials -->
+<section id="testimonios" aria-labelledby="testimonials-title" class="mk-section">
+	<div class="mk-shell">
+		<div class="mk-shelf" aria-hidden="true"></div>
+
+		<h2
+			id="testimonials-title"
+			class="mt-10 max-w-3xl text-balance font-display text-3xl font-bold leading-[1.08] tracking-[-0.03em] text-text-primary sm:mt-12 sm:text-4xl lg:text-5xl"
+		>
+			Prueba Social
+		</h2>
+		<p class="mt-4 max-w-2xl text-lg leading-relaxed text-text-secondary">
+			Más de 500 negocios confían en Makced
+		</p>
+
+		<div class="mt-8 grid gap-4 sm:mt-10 sm:gap-6 md:grid-cols-3">
+			<figure class="mk-card flex flex-col p-6">
+				<StarRating />
+				<blockquote class="mt-4 flex-1 text-base leading-relaxed text-text-secondary">
+					"Lancé mi tienda en 10 minutos. Sin complicaciones, sin comisiones abusivas. Excelente servicio."
+				</blockquote>
+				<figcaption class="mt-6 border-t border-border-color pt-4">
+					<p class="text-sm font-semibold text-text-primary">María González</p>
+					<p class="text-sm text-text-secondary">Tienda de Artesanía</p>
+				</figcaption>
+			</figure>
+
+			<figure class="mk-card flex flex-col p-6">
+				<StarRating />
+				<blockquote class="mt-4 flex-1 text-base leading-relaxed text-text-secondary">
+					"Por fin tengo mi propia tienda online sin pagar comisiones por venta. Los fondos llegan directos a mi cuenta."
+				</blockquote>
+				<figcaption class="mt-6 border-t border-border-color pt-4">
+					<p class="text-sm font-semibold text-text-primary">Carlos Rodríguez</p>
+					<p class="text-sm text-text-secondary">Ropa Urbana</p>
+				</figcaption>
+			</figure>
+
+			<figure class="mk-card flex flex-col p-6">
+				<StarRating />
+				<blockquote class="mt-4 flex-1 text-base leading-relaxed text-text-secondary">
+					"El soporte por WhatsApp es increíble. Me ayudaron en todo momento. Muy recomendable."
+				</blockquote>
+				<figcaption class="mt-6 border-t border-border-color pt-4">
+					<p class="text-sm font-semibold text-text-primary">Ana Martínez</p>
+					<p class="text-sm text-text-secondary">Cosmética Natural</p>
+				</figcaption>
+			</figure>
+		</div>
+	</div>
+</section>

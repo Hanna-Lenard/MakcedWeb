@@ -1,0 +1,177 @@
+---
+import { SIGNUP_URL } from '../../config/site';
+---
+
+<!-- Header/Navigation -->
+<header
+	id="site-header"
+	data-scrolled="false"
+	class="fixed inset-x-0 top-0 z-50 border-b border-transparent bg-bg-main/85 backdrop-blur-md transition-[background-color,border-color,box-shadow] duration-200"
+>
+	<nav class="mk-shell flex h-[var(--nav-h)] items-center justify-between gap-3" aria-label="Navegación principal">
+		<a
+			href="#inicio"
+			class="flex shrink-0 items-center gap-2.5 rounded-lg text-text-primary"
+			aria-label="Makced — inicio"
+		>
+			<img
+				src="/makced-logo-mark.png"
+				srcset="/makced-logo-mark.png 1x, /makced-logo-mark@2x.png 2x"
+				width="48"
+				height="32"
+				alt=""
+				class="h-8 w-auto"
+			/>
+			<span class="font-display text-[1.35rem] font-bold tracking-tight">Makced</span>
+		</a>
+
+		<div class="hidden items-center gap-1 md:flex">
+			<a
+				href="#caracteristicas"
+				class="relative rounded-md px-3 py-2 text-sm font-medium text-text-secondary transition-colors after:absolute after:inset-x-3 after:-bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-mint-ink after:transition-transform hover:text-text-primary hover:after:scale-x-100"
+			>
+				Características
+			</a>
+			<a
+				href="#precios"
+				class="relative rounded-md px-3 py-2 text-sm font-medium text-text-secondary transition-colors after:absolute after:inset-x-3 after:-bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-mint-ink after:transition-transform hover:text-text-primary hover:after:scale-x-100"
+			>
+				Precios
+			</a>
+		</div>
+
+		<div class="flex items-center gap-1.5 sm:gap-2">
+			<button
+				id="theme-toggle"
+				type="button"
+				class="inline-flex h-10 w-10 items-center justify-center rounded-lg text-text-secondary transition-colors hover:bg-surface-sunken hover:text-text-primary"
+				aria-label="Modo oscuro"
+				aria-pressed="false"
+			>
+				<svg id="icon-sun" class="hidden h-5 w-5 dark:block" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+					<path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+				</svg>
+				<svg id="icon-moon" class="block h-5 w-5 dark:hidden" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+					<path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+				</svg>
+			</button>
+
+			<a href={SIGNUP_URL} class="mk-btn mk-btn-primary hidden px-4 text-sm sm:inline-flex">
+				Empezar Gratis
+			</a>
+
+			<button
+				id="menu-toggle"
+				type="button"
+				class="inline-flex h-10 w-10 items-center justify-center rounded-lg text-text-secondary transition-colors hover:bg-surface-sunken hover:text-text-primary md:hidden"
+				aria-expanded="false"
+				aria-controls="mobile-menu"
+				aria-label="Abrir menú"
+			>
+				<svg id="icon-menu" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+					<path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/>
+				</svg>
+				<svg id="icon-close" class="hidden h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+					<path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/>
+				</svg>
+			</button>
+		</div>
+	</nav>
+
+	<div id="mobile-menu" hidden class="border-t border-border-color bg-bg-main/95 backdrop-blur-md md:hidden">
+		<div class="mk-shell py-4">
+			<div class="flex flex-col gap-0.5">
+				<a href="#caracteristicas" class="rounded-lg px-3 py-3 text-base font-medium text-text-primary transition-colors hover:bg-surface-sunken">
+					Características
+				</a>
+				<a href="#precios" class="rounded-lg px-3 py-3 text-base font-medium text-text-primary transition-colors hover:bg-surface-sunken">
+					Precios
+				</a>
+			</div>
+			<a href={SIGNUP_URL} class="mk-btn mk-btn-primary mt-3 w-full sm:hidden">
+				Empezar Gratis
+			</a>
+		</div>
+	</div>
+</header>
+
+<style>
+	#site-header[data-scrolled="true"] {
+		border-bottom-color: var(--border-color);
+		background-color: color-mix(in srgb, var(--bg-main) 92%, transparent);
+		box-shadow: 0 10px 30px -24px rgba(15, 23, 42, 0.45);
+	}
+</style>
+
+<script>
+	const root = document.documentElement;
+	const themeToggle = document.getElementById('theme-toggle');
+
+	function syncThemeButton() {
+		if (!themeToggle) return;
+		const isDark = root.getAttribute('data-theme') === 'dark';
+		themeToggle.setAttribute('aria-pressed', String(isDark));
+	}
+
+	themeToggle?.addEventListener('click', () => {
+		const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+		root.setAttribute('data-theme', next);
+		try {
+			localStorage.setItem('theme', next);
+		} catch {
+			// localStorage puede estar bloqueado; el tema sigue funcionando en la sesión.
+		}
+		syncThemeButton();
+	});
+
+	syncThemeButton();
+
+	const header = document.getElementById('site-header');
+	const menuToggle = document.getElementById('menu-toggle');
+	const mobileMenu = document.getElementById('mobile-menu');
+	const iconMenu = document.getElementById('icon-menu');
+	const iconClose = document.getElementById('icon-close');
+
+	function setMenu(open: boolean) {
+		if (!menuToggle || !mobileMenu) return;
+		menuToggle.setAttribute('aria-expanded', String(open));
+		menuToggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+		mobileMenu.hidden = !open;
+		iconMenu?.classList.toggle('hidden', open);
+		iconClose?.classList.toggle('hidden', !open);
+	}
+
+	menuToggle?.addEventListener('click', () => {
+		setMenu(menuToggle.getAttribute('aria-expanded') !== 'true');
+	});
+
+	// Cualquier navegación desde el header (logo incluido) cierra el menú móvil.
+	header?.querySelectorAll('a').forEach((link) => {
+		link.addEventListener('click', () => setMenu(false));
+	});
+
+	document.addEventListener('keydown', (event) => {
+		if (event.key !== 'Escape') return;
+		if (!menuToggle || menuToggle.getAttribute('aria-expanded') !== 'true') return;
+		setMenu(false);
+		menuToggle.focus();
+	});
+
+	document.addEventListener('click', (event) => {
+		if (menuToggle?.getAttribute('aria-expanded') !== 'true') return;
+		if (header && event.target instanceof Node && !header.contains(event.target)) {
+			setMenu(false);
+		}
+	});
+
+	window.matchMedia('(min-width: 768px)').addEventListener('change', (event) => {
+		if (event.matches) setMenu(false);
+	});
+
+	function syncHeaderState() {
+		header?.setAttribute('data-scrolled', String(window.scrollY > 8));
+	}
+
+	syncHeaderState();
+	window.addEventListener('scroll', syncHeaderState, { passive: true });
+</script>
