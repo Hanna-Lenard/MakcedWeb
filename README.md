@@ -39,6 +39,7 @@ Otros comandos:
 
 ```text
 src/
+├── assets/problem/            # ilustraciones importadas y optimizadas en build
 ├── pages/index.astro          # única página: <head>, metadatos y orden de secciones
 ├── config/site.ts             # SIGNUP_URL, sufijo de dominio y slug por defecto
 ├── styles/global.css          # design system: tokens y clases mk-*
@@ -48,6 +49,9 @@ src/
 public/                        # logos, favicons, fuentes y og-cover.png
 ```
 
+- Las **ilustraciones de sección** se importan desde `src/assets/` con
+  `astro:assets`, que genera variantes AVIF/WebP responsive conservando la
+  transparencia. Los PNG originales no se sirven desde `public/`.
 - El **dominio de producción** (`https://www.makced.online`) se define en
   `astro.config.mjs` (`site`) y se usa para `canonical` y Open Graph.
 - Los **enlaces de registro** se centralizan en `src/config/site.ts`. No
